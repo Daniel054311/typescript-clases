@@ -220,65 +220,85 @@
 
 
 // INDEX SIGNATURE
-interface TransactionObj{
-    readonly  [key:string]:number
-   Pizza:number,
-    Books:number,
-    Job:number
-}
 // interface TransactionObj{
-//   readonly  [key:string]:number
+//     readonly  [key:string]:number
+//    Pizza:number,
+//     Books:number,
+//     Job:number
 // }
+// // interface TransactionObj{
+// //   readonly  [key:string]:number
+// // }
+//
+// const  todaysTransaction:TransactionObj = {
+//     Pizza: -10,
+//     Books: -5,
+//     Job: 50
+// }
+//
+// console.log(todaysTransaction.Pizza)
+// console.log(todaysTransaction["Pizza"])
+// let prop:string = 'Pizza';
+// console.log(todaysTransaction[prop])
+//
+// const todaysNet = (transactions:TransactionObj):number =>{
+//     let total:number = 0;
+//     for (const transaction in transactions){
+//         total += transactions[transaction]
+//     }
+//     return total;
+// }
+// console.log(todaysNet(todaysTransaction))
+// // todaysTransaction.Pizza = 10000;
+// console.log(todaysTransaction["Pizza"])
+//
+// ////////////////////////////
+//
+// interface Student{
+//     // [key:string]:string|number|number[]|undefined
+//     name:string,
+//     GPA:number,
+//     classes?:number[]
+// }
+//
+// const student:Student = {
+//     name:"Doug",
+//     GPA:10,
+//     classes: [100,200,300,400]
+// }
+// // console.log(student.test);
+//
+// // KEYOF ASSERTION
+// for (const key in student){
+//     console.log(`${key}: ${student[key as keyof Student]}`)
+// }
+//
+// Object.keys(student).map( key =>{
+//     console.log(student[key as keyof typeof student])
+// })
+//
+// const logStudentKey = (student:Student, key:keyof Student) =>{
+//     console.log(`Student ${key}: ${student[key]}`)
+// }
+//
+// logStudentKey(student,'GPA');
 
-const  todaysTransaction:TransactionObj = {
-    Pizza: -10,
-    Books: -5,
-    Job: 50
+
+
+
+// interface Incomes{
+//     [key:string]:number
+// }
+//UTILITY TYPE
+
+type Stream = 'salary' | 'bonus' | 'side_hustle';
+type Income = Record<Stream, number>
+const monthlyIncome:Income = {
+    salary:100000,
+    bonus:1000,
+        side_hustle:1000,
 }
 
-console.log(todaysTransaction.Pizza)
-console.log(todaysTransaction["Pizza"])
-let prop:string = 'Pizza';
-console.log(todaysTransaction[prop])
-
-const todaysNet = (transactions:TransactionObj):number =>{
-    let total:number = 0;
-    for (const transaction in transactions){
-        total += transactions[transaction]
-    }
-    return total;
+for (const revenue in monthlyIncome){
+    console.log(monthlyIncome[revenue as keyof typeof monthlyIncome]);
 }
-console.log(todaysNet(todaysTransaction))
-// todaysTransaction.Pizza = 10000;
-console.log(todaysTransaction["Pizza"])
-
-////////////////////////////
-
-interface Student{
-    // [key:string]:string|number|number[]|undefined
-    name:string,
-    GPA:number,
-    classes?:number[]
-}
-
-const student:Student = {
-    name:"Doug",
-    GPA:10,
-    classes: [100,200,300,400]
-}
-// console.log(student.test);
-
-// KEYOF ASSERTION
-for (const key in student){
-    console.log(`${key}: ${student[key as keyof Student]}`)
-}
-
-Object.keys(student).map( key =>{
-    console.log(student[key as keyof typeof student])
-})
-
-const logStudentKey = (student:Student, key:keyof Student) =>{
-    console.log(`Student ${key}: ${student[key]}`)
-}
-
-logStudentKey(student,'GPA');
